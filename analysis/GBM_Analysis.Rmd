@@ -1,0 +1,106 @@
+---
+title: "GBM Analysis Report"
+author: "Mohammed Omar Elsiddieg Abdallah"
+date: "9/12/2018"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+
+## Read in the Data
+```{r, message=FALSE}
+library(maftools)
+library(data.table)
+maf <- fread('/home/sieny/Gemini_Data/Brain/mskcc-vcf2maf-decbf60/Annoted_Mutect_brain5.maf')
+clin <- fread('/home/sieny/Gemini_Data/Brain/cData.csv')
+brn <- read.maf(maf,clin)
+```
+## Explore
+```{r}
+getSampleSummary(brn)
+getGeneSummary(brn)
+getFields(brn)
+```
+## Maf summary
+
+```{r}
+plotmafSummary(maf = brn, rmOutlier = TRUE, addStat = 'median', dashboard = TRUE, 
+               titvRaw = FALSE)
+```
+
+## Oncoplot
+
+```{r}
+oncoplot(maf = brn, top = 20)
+```
+
+## plot titv summary
+
+```{r}
+brn.titv = titv(maf = brn, plot = FALSE, useSyn = TRUE)
+plotTiTv(res = brn.titv)
+```
+## lolipop plots
+```{r}
+lollipopPlot(maf = brn, gene = 'TP53', AACol = 'HGVSp', showMutationRate = TRUE)
+```
+ 
+```{r}
+lollipopPlot(maf = brn, gene = 'MEGF6', AACol = 'HGVSp', showMutationRate = TRUE)
+```
+
+##  A rainfall plot
+
+```{r}
+rainfallPlot(maf = brn, detectChangePoints = TRUE, fontSize = 12, pointSize = 0.6)
+```
+
+##  Somatic Interaction
+
+```{r}
+somaticInteractions(maf = brn, top = 25, pvalue = c(0.05, 0.1))
+
+```
+## Oncodrive
+
+```{r ,FALSE, message=FALSE, warning=FALSE,results='hide', cache=TRUE}
+brn.drivers = oncodrive(maf = brn, AACol = 'HGVSp', minMut = 5, pvalMethod = 'zscore')
+```
+ 
+```{r}
+
+plotOncodrive(res = brn.drivers, fdrCutOff = 0.1, useFraction = TRUE)
+```
+
+## PFAM domains
+
+```{r}
+brn.pfam = pfamDomains(maf = brn, AACol = 'HGVSp', top = 10)
+```
+## APOBEC Signature
+
+```{r ,include=FALSE}
+brn.tnm = trinucleotideMatrix(maf = brn, 
+                              ref_genome = '/home/sieny/snpEff/Human_Ref/hg19.fa', 
+                              prefix="chr",add = TRUE, ignoreChr = 'chr23', useSyn = TRUE)
+```
+
+## Singnature analysis
+
+```{r}
+require('NMF')
+brn.sign = extractSignatures(mat = brn.tnm, nTry = 6, plotBestFitRes = FALSE)
+```
+
+## Visualizing Signatures
+
+```{r}
+plotSignatures(brn.sign, title_size = 0.8)
+```
+
+

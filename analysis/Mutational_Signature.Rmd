@@ -1,0 +1,118 @@
+---
+title: "MutationnSignature Analysis"
+author: "Mohammed Omar Elsiddieg Abdallah"
+date: "9/20/2018"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(MutationalPatterns)
+library(SomaticSignatures)
+library(Rsamtools)
+library(VariantAnnotation)
+library(data.table)
+library(stringr)
+```
+## Reading reference genome
+
+```{r ref_genome}
+ref_genome <- "BSgenome.Hsapiens.UCSC.hg19"
+library(ref_genome, character.only = TRUE)
+faf <- FaFile('/home/sieny/snpEff/Human_Ref/hg19.fa')
+```
+
+## Reading VCF files
+
+```{r vcf_files}
+setwd('/home/sieny/Projects/GBM/New_Threshold/')
+files <- list.files(pattern = 'passOnly.vcf$')
+# Exclude normal sample
+files <- files[-19]
+fnames <- str_split(files,pattern = "\\.") %>% sapply( function(x)x[1])
+head(fnames)
+snames <- str_extract(fnames,'[a-z]?\\d+')
+```
+
+```{r,message=FALSE,warning=FALSE,include=FALSE}
+setwd('/home/sieny/Projects/GBM/New_Threshold/')
+vcfs <- read_vcfs_as_granges(vcf_files = files,genome = ref_genome,sample_names = snames)
+summary(vcfs)
+```
+
+## Get Mutations from VCF 
+
+```{r}
+muts = mutations_from_vcf(vcfs[[1]])
+head(muts,12)
+```
+ 
+## Mutation Context
+
+```{r}
+context = mut_context(vcfs[[1]], ref_genome)
+head(context, 12)
+```
+
+## Mutation Spectrum
+
+```{r}
+ type_occurrences <- mut_type_occurrences(vcfs, ref_genome)
+ type_occurrences
+ plot_spectrum(type_occurrences)
+
+```
+
+## 96 profile
+```{r}
+mut_mat <- mut_matrix(vcf_list = vcfs, ref_genome = ref_genome)
+plot_96_profile(mut_mat[,c(1,7)])
+
+```
+## De Novo Signature
+```{r}
+mut_mat <- mut_mat + 0.0001
+library("NMF")
+#estimate <- nmf(mut_mat, rank=2:5, method="brunet", nrun=10, seed=123456)
+
+```
+
+## Cosmic Signature
+```{r}
+ sp_url <- paste("http://cancer.sanger.ac.uk/cancergenome/assets/",
+ "signatures_probabilities.txt", sep = "")
+cancer_signatures = readr::read_delim(sp_url,delim = "\t")
+new_order = match(row.names(mut_mat), cancer_signatures$`Somatic Mutation Type`)
+
+
+```
+
+```{r}
+cancer_signatures = cancer_signatures[as.vector(new_order),]
+cancer_signatures <- as.data.frame(cancer_signatures)
+row.names(cancer_signatures) = cancer_signatures$`Somatic Mutation Type`
+```
+ 
+```{r}
+cancer_signatures = as.matrix(cancer_signatures[,4:33])
+```
+ 
+```{r}
+sig_hclust = cluster_signatures(cancer_signatures)
+col_order = colnames(cancer_signatures)[sig_hclust$order]
+plot_96_profile(cancer_signatures[,1:4], condensed = TRUE, ymax = 0.3)
+
+```
+
+## Cosmic Similarity
+```{r}
+ cos_sim(mut_mat[,1], cancer_signatures[,1])
+ cos_sim_samples_signatures = cos_sim_matrix(mut_mat, cancer_signatures)
+ plot_cosine_heatmap(cos_sim_samples_signatures,
+ col_order = col_order,
+ cluster_rows = TRUE)
+
+```
+

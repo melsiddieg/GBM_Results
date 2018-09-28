@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Mohammed Omar Elsiddieg Abdallah" />
+
+
+<title>GBM Analysis Report</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GBM_Analysis</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/jdblischak/workflowr">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">GBM Analysis Report</h1>
+<h4 class="author"><em>Mohammed Omar Elsiddieg Abdallah</em></h4>
+<h4 class="date"><em>9/12/2018</em></h4>
+
+</div>
+
+
+<p><strong>Last updated:</strong> 2018-09-28</p>
+<strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
+<ul>
+<li>
+<details>
+<p><summary> <strong style="color:red;">✖</strong> <strong>R Markdown file:</strong> uncommitted changes </summary> The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</details>
+</li>
+<li>
+<details>
+<p><summary> <strong style="color:blue;">✔</strong> <strong>Environment:</strong> empty </summary></p>
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</details>
+</li>
+<li>
+<details>
+<p><summary> <strong style="color:blue;">✔</strong> <strong>Seed:</strong> <code>set.seed(20180928)</code> </summary></p>
+<p>The command <code>set.seed(20180928)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</details>
+</li>
+<li>
+<details>
+<p><summary> <strong style="color:blue;">✔</strong> <strong>Session information:</strong> recorded </summary></p>
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</details>
+</li>
+<li>
+<details>
+<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> 72fc62c </summary></p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+<pre><code>
+Ignored files:
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    analysis/GBM_Analysis_cache/
+
+Untracked files:
+    Untracked:  24_changePoints.tsv
+    Untracked:  Brn_sig.maf
+    Untracked:  Mutational_Signature_files/
+    Untracked:  analysis/GBM_Analysis.Rmd
+    Untracked:  analysis/Mutational_Signature.Rmd
+    Untracked:  docs/figure/
+
+</code></pre>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</details>
+</li>
+</ul>
+<hr />
+<div id="read-in-the-data" class="section level2">
+<h2>Read in the Data</h2>
+<pre class="r"><code>library(maftools)
+library(data.table)
+maf &lt;- fread(&#39;/home/sieny/Gemini_Data/Brain/mskcc-vcf2maf-decbf60/Annoted_Mutect_brain5.maf&#39;)
+clin &lt;- fread(&#39;/home/sieny/Gemini_Data/Brain/cData.csv&#39;)
+brn &lt;- read.maf(maf,clin)</code></pre>
+<pre><code>               ID     N
+ 1:       Samples    29
+ 2:       3&#39;Flank  2259
+ 3:         3&#39;UTR  8461
+ 4:       5&#39;Flank  3523
+ 5:         5&#39;UTR  4151
+ 6:           IGR   619
+ 7:        Intron 97018
+ 8:           RNA   715
+ 9:        Silent  2836
+10: Splice_Region   974
+                        ID summary    Mean Median
+ 1:             NCBI_Build  GRCh37      NA     NA
+ 2:                 Center       .      NA     NA
+ 3:                Samples      29      NA     NA
+ 4:                 nGenes    5115      NA     NA
+ 5:        Frame_Shift_Del      75   2.586      2
+ 6:        Frame_Shift_Ins      77   2.655      1
+ 7:           In_Frame_Del      17   0.586      0
+ 8:           In_Frame_Ins      77   2.655      2
+ 9:      Missense_Mutation    8273 285.276    149
+10:      Nonsense_Mutation     740  25.517     10
+11:       Nonstop_Mutation       9   0.310      0
+12:            Splice_Site     220   7.586      3
+13: Translation_Start_Site      18   0.621      0
+14:                  total    9506 327.793    172
+      Hugo_Symbol Frame_Shift_Del Frame_Shift_Ins In_Frame_Del
+   1:      CELSR2               0               0            0
+   2:         TTN               0               1            0
+   3:        LRP8               2               0            0
+   4:       IGFN1               0               0            0
+   5:       MACF1               1               0            0
+  ---                                                         
+5111:     ZSCAN5C               0               0            0
+5112:      ZSWIM2               0               0            0
+5113:      ZSWIM6               0               0            0
+5114:      ZSWIM7               0               0            0
+5115:       ZWINT               0               0            0
+      In_Frame_Ins Missense_Mutation Nonsense_Mutation Nonstop_Mutation
+   1:           22                 8                 1                0
+   2:            0                59                 7                0
+   3:            0                15                 0                0
+   4:            0                20                 1                0
+   5:            0                18                 5                0
+  ---                                                                  
+5111:            0                 1                 0                0
+5112:            0                 1                 0                0
+5113:            0                 1                 0                0
+5114:            0                 0                 0                0
+5115:            0                 0                 1                0
+      Splice_Site Translation_Start_Site total MutatedSamples
+   1:           0                      0    31             22
+   2:           2                      0    69             17
+   3:           0                      0    17             16
+   4:           0                      0    21             15
+   5:           0                      0    24             13
+  ---                                                        
+5111:           0                      0     1              1
+5112:           0                      0     1              1
+5113:           0                      0     1              1
+5114:           1                      0     1              1
+5115:           0                      0     1              1
+      AlteredSamples
+   1:             22
+   2:             17
+   3:             16
+   4:             15
+   5:             13
+  ---               
+5111:              1
+5112:              1
+5113:              1
+5114:              1
+5115:              1
+[1] &quot;TTN&quot;   &quot;MACF1&quot; &quot;HMCN1&quot; &quot;OBSCN&quot; &quot;NEB&quot;  
+[1] &quot;13&quot; &quot;c6&quot;</code></pre>
+</div>
+<div id="explore" class="section level2">
+<h2>Explore</h2>
+<pre class="r"><code>getSampleSummary(brn)</code></pre>
+<pre><code>    Tumor_Sample_Barcode Frame_Shift_Del Frame_Shift_Ins In_Frame_Del
+ 1:                   24               0              36            0
+ 2:                   23               4               1            2
+ 3:                   20               3               2            1
+ 4:                   13               0               1            0
+ 5:                   30               6               5            1
+ 6:                    2               5               3            4
+ 7:                   27              16              12            1
+ 8:                   31               7               4            2
+ 9:                    1               4               1            1
+10:                   32               1               1            0
+11:                   10               4               1            0
+12:                    5               2               2            1
+13:                   c6               3               1            1
+14:                   22               0               0            0
+15:                   14               2               0            0
+16:                   21               0               1            0
+17:                   17               1               0            0
+18:                    9               4               1            0
+19:                    4               1               2            1
+20:                   16               3               0            0
+21:                   18               1               0            0
+22:                    7               1               1            0
+23:                   25               1               0            0
+24:                    8               3               0            1
+25:                   12               0               2            0
+26:                   29               2               0            0
+27:                   28               0               0            0
+28:                   11               1               0            1
+29:                    6               0               0            0
+    Tumor_Sample_Barcode Frame_Shift_Del Frame_Shift_Ins In_Frame_Del
+    In_Frame_Ins Missense_Mutation Nonsense_Mutation Nonstop_Mutation
+ 1:            2              1686               203                2
+ 2:            5              1289               129                2
+ 3:            8               962                81                0
+ 4:            1               894                62                0
+ 5:            5               436                31                1
+ 6:           10               386                39                0
+ 7:            2               269                16                0
+ 8:            5               224                15                0
+ 9:            2               175                10                0
+10:            5               164                18                0
+11:            3               169                12                1
+12:            5               168                 5                0
+13:            2               165                 7                1
+14:            2               149                21                0
+15:            2               156                 9                0
+16:            0               131                13                1
+17:            1               110                17                0
+18:            3               107                 9                0
+19:            4               102                 6                1
+20:            1                88                 5                0
+21:            0                80                10                0
+22:            1                81                 7                0
+23:            2                67                 3                0
+24:            2                56                 4                0
+25:            2                54                 3                0
+26:            2                40                 2                0
+27:            0                32                 3                0
+28:            0                30                 0                0
+29:            0                 3                 0                0
+    In_Frame_Ins Missense_Mutation Nonsense_Mutation Nonstop_Mutation
+    Splice_Site Translation_Start_Site total
+ 1:          62                      2  1993
+ 2:          43                      3  1478
+ 3:          26                      2  1085
+ 4:          22                      5   985
+ 5:           6                      1   492
+ 6:           5                      1   453
+ 7:           7                      0   323
+ 8:           3                      0   260
+ 9:           6                      0   199
+10:           4                      0   193
+11:           2                      0   192
+12:           7                      0   190
+13:           2                      3   185
+14:           5                      0   177
+15:           3                      0   172
+16:           0                      0   146
+17:           5                      0   134
+18:           3                      0   127
+19:           0                      0   117
+20:           0                      0    97
+21:           5                      0    96
+22:           1                      0    92
+23:           2                      0    75
+24:           0                      1    67
+25:           0                      0    61
+26:           1                      0    47
+27:           0                      0    35
+28:           0                      0    32
+29:           0                      0     3
+    Splice_Site Translation_Start_Site total</code></pre>
+<pre class="r"><code>getGeneSummary(brn)</code></pre>
+<pre><code>      Hugo_Symbol Frame_Shift_Del Frame_Shift_Ins In_Frame_Del
+   1:      CELSR2               0               0            0
+   2:         TTN               0               1            0
+   3:        LRP8               2               0            0
+   4:       IGFN1               0               0            0
+   5:       MACF1               1               0            0
+  ---                                                         
+5111:     ZSCAN5C               0               0            0
+5112:      ZSWIM2               0               0            0
+5113:      ZSWIM6               0               0            0
+5114:      ZSWIM7               0               0            0
+5115:       ZWINT               0               0            0
+      In_Frame_Ins Missense_Mutation Nonsense_Mutation Nonstop_Mutation
+   1:           22                 8                 1                0
+   2:            0                59                 7                0
+   3:            0                15                 0                0
+   4:            0                20                 1                0
+   5:            0                18                 5                0
+  ---                                                                  
+5111:            0                 1                 0                0
+5112:            0                 1                 0                0
+5113:            0                 1                 0                0
+5114:            0                 0                 0                0
+5115:            0                 0                 1                0
+      Splice_Site Translation_Start_Site total MutatedSamples
+   1:           0                      0    31             22
+   2:           2                      0    69             17
+   3:           0                      0    17             16
+   4:           0                      0    21             15
+   5:           0                      0    24             13
+  ---                                                        
+5111:           0                      0     1              1
+5112:           0                      0     1              1
+5113:           0                      0     1              1
+5114:           1                      0     1              1
+5115:           0                      0     1              1
+      AlteredSamples
+   1:             22
+   2:             17
+   3:             16
+   4:             15
+   5:             13
+  ---               
+5111:              1
+5112:              1
+5113:              1
+5114:              1
+5115:              1</code></pre>
+<pre class="r"><code>getFields(brn)</code></pre>
+<pre><code>  [1] &quot;Hugo_Symbol&quot;                   &quot;Entrez_Gene_Id&quot;               
+  [3] &quot;Center&quot;                        &quot;NCBI_Build&quot;                   
+  [5] &quot;Chromosome&quot;                    &quot;Start_Position&quot;               
+  [7] &quot;End_Position&quot;                  &quot;Strand&quot;                       
+  [9] &quot;Variant_Classification&quot;        &quot;Variant_Type&quot;                 
+ [11] &quot;Reference_Allele&quot;              &quot;Tumor_Seq_Allele1&quot;            
+ [13] &quot;Tumor_Seq_Allele2&quot;             &quot;dbSNP_RS&quot;                     
+ [15] &quot;dbSNP_Val_Status&quot;              &quot;Tumor_Sample_Barcode&quot;         
+ [17] &quot;Matched_Norm_Sample_Barcode&quot;   &quot;Match_Norm_Seq_Allele1&quot;       
+ [19] &quot;Match_Norm_Seq_Allele2&quot;        &quot;Tumor_Validation_Allele1&quot;     
+ [21] &quot;Tumor_Validation_Allele2&quot;      &quot;Match_Norm_Validation_Allele1&quot;
+ [23] &quot;Match_Norm_Validation_Allele2&quot; &quot;Verification_Status&quot;          
+ [25] &quot;Validation_Status&quot;             &quot;Mutation_Status&quot;              
+ [27] &quot;Sequencing_Phase&quot;              &quot;Sequence_Source&quot;              
+ [29] &quot;Validation_Method&quot;             &quot;Score&quot;                        
+ [31] &quot;BAM_File&quot;                      &quot;Sequencer&quot;                    
+ [33] &quot;Tumor_Sample_UUID&quot;             &quot;Matched_Norm_Sample_UUID&quot;     
+ [35] &quot;HGVSc&quot;                         &quot;HGVSp&quot;                        
+ [37] &quot;HGVSp_Short&quot;                   &quot;Transcript_ID&quot;                
+ [39] &quot;Exon_Number&quot;                   &quot;t_depth&quot;                      
+ [41] &quot;t_ref_count&quot;                   &quot;t_alt_count&quot;                  
+ [43] &quot;n_depth&quot;                       &quot;n_ref_count&quot;                  
+ [45] &quot;n_alt_count&quot;                   &quot;all_effects&quot;                  
+ [47] &quot;Allele&quot;                        &quot;Gene&quot;                         
+ [49] &quot;Feature&quot;                       &quot;Feature_type&quot;                 
+ [51] &quot;Consequence&quot;                   &quot;cDNA_position&quot;                
+ [53] &quot;CDS_position&quot;                  &quot;Protein_position&quot;             
+ [55] &quot;Amino_acids&quot;                   &quot;Codons&quot;                       
+ [57] &quot;Existing_variation&quot;            &quot;ALLELE_NUM&quot;                   
+ [59] &quot;DISTANCE&quot;                      &quot;STRAND_VEP&quot;                   
+ [61] &quot;SYMBOL&quot;                        &quot;SYMBOL_SOURCE&quot;                
+ [63] &quot;HGNC_ID&quot;                       &quot;BIOTYPE&quot;                      
+ [65] &quot;CANONICAL&quot;                     &quot;CCDS&quot;                         
+ [67] &quot;ENSP&quot;                          &quot;SWISSPROT&quot;                    
+ [69] &quot;TREMBL&quot;                        &quot;UNIPARC&quot;                      
+ [71] &quot;RefSeq&quot;                        &quot;SIFT&quot;                         
+ [73] &quot;PolyPhen&quot;                      &quot;EXON&quot;                         
+ [75] &quot;INTRON&quot;                        &quot;DOMAINS&quot;                      
+ [77] &quot;AF&quot;                            &quot;AFR_AF&quot;                       
+ [79] &quot;AMR_AF&quot;                        &quot;ASN_AF&quot;                       
+ [81] &quot;EAS_AF&quot;                        &quot;EUR_AF&quot;                       
+ [83] &quot;SAS_AF&quot;                        &quot;AA_AF&quot;                        
+ [85] &quot;EA_AF&quot;                         &quot;CLIN_SIG&quot;                     
+ [87] &quot;SOMATIC&quot;                       &quot;PUBMED&quot;                       
+ [89] &quot;MOTIF_NAME&quot;                    &quot;MOTIF_POS&quot;                    
+ [91] &quot;HIGH_INF_POS&quot;                  &quot;MOTIF_SCORE_CHANGE&quot;           
+ [93] &quot;IMPACT&quot;                        &quot;PICK&quot;                         
+ [95] &quot;VARIANT_CLASS&quot;                 &quot;TSL&quot;                          
+ [97] &quot;HGVS_OFFSET&quot;                   &quot;PHENO&quot;                        
+ [99] &quot;MINIMISED&quot;                     &quot;ExAC_AF&quot;                      
+[101] &quot;ExAC_AF_AFR&quot;                   &quot;ExAC_AF_AMR&quot;                  
+[103] &quot;ExAC_AF_EAS&quot;                   &quot;ExAC_AF_FIN&quot;                  
+[105] &quot;ExAC_AF_NFE&quot;                   &quot;ExAC_AF_OTH&quot;                  
+[107] &quot;ExAC_AF_SAS&quot;                   &quot;GENE_PHENO&quot;                   
+[109] &quot;FILTER&quot;                        &quot;flanking_bps&quot;                 
+[111] &quot;variant_id&quot;                    &quot;variant_qual&quot;                 
+[113] &quot;ExAC_AF_Adj&quot;                   &quot;ExAC_AC_AN_Adj&quot;               
+[115] &quot;ExAC_AC_AN&quot;                    &quot;ExAC_AC_AN_AFR&quot;               
+[117] &quot;ExAC_AC_AN_AMR&quot;                &quot;ExAC_AC_AN_EAS&quot;               
+[119] &quot;ExAC_AC_AN_FIN&quot;                &quot;ExAC_AC_AN_NFE&quot;               
+[121] &quot;ExAC_AC_AN_OTH&quot;                &quot;ExAC_AC_AN_SAS&quot;               
+[123] &quot;ExAC_FILTER&quot;                   &quot;gnomAD_AF&quot;                    
+[125] &quot;gnomAD_AFR_AF&quot;                 &quot;gnomAD_AMR_AF&quot;                
+[127] &quot;gnomAD_ASJ_AF&quot;                 &quot;gnomAD_EAS_AF&quot;                
+[129] &quot;gnomAD_FIN_AF&quot;                 &quot;gnomAD_NFE_AF&quot;                
+[131] &quot;gnomAD_OTH_AF&quot;                 &quot;gnomAD_SAS_AF&quot;                </code></pre>
+</div>
+<div id="maf-summary" class="section level2">
+<h2>Maf summary</h2>
+<pre class="r"><code>plotmafSummary(maf = brn, rmOutlier = TRUE, addStat = &#39;median&#39;, dashboard = TRUE, 
+               titvRaw = FALSE)</code></pre>
+<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="oncoplot" class="section level2">
+<h2>Oncoplot</h2>
+<pre class="r"><code>oncoplot(maf = brn, top = 20)</code></pre>
+<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="plot-titv-summary" class="section level2">
+<h2>plot titv summary</h2>
+<pre class="r"><code>brn.titv = titv(maf = brn, plot = FALSE, useSyn = TRUE)
+plotTiTv(res = brn.titv)</code></pre>
+<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>NULL</code></pre>
+</div>
+<div id="lolipop-plots" class="section level2">
+<h2>lolipop plots</h2>
+<pre class="r"><code>lollipopPlot(maf = brn, gene = &#39;TP53&#39;, AACol = &#39;HGVSp&#39;, showMutationRate = TRUE)</code></pre>
+<pre><code>   HGNC    refseq.ID   protein.ID aa.length
+1: TP53    NM_000546    NP_000537       393
+2: TP53 NM_001126112 NP_001119584       393
+3: TP53 NM_001126118 NP_001119590       354
+4: TP53 NM_001126115 NP_001119587       261
+5: TP53 NM_001126113 NP_001119585       346
+6: TP53 NM_001126117 NP_001119589       214
+7: TP53 NM_001126114 NP_001119586       341
+8: TP53 NM_001126116 NP_001119588       209</code></pre>
+<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>lollipopPlot(maf = brn, gene = &#39;MEGF6&#39;, AACol = &#39;HGVSp&#39;, showMutationRate = TRUE)</code></pre>
+<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="a-rainfall-plot" class="section level2">
+<h2>A rainfall plot</h2>
+<pre class="r"><code>rainfallPlot(maf = brn, detectChangePoints = TRUE, fontSize = 12, pointSize = 0.6)</code></pre>
+<pre><code>   Chromosome Start_Position End_Position nMuts Avg_intermutation_dist
+1:          2      179394854    179638475    82                3007.67
+     Size C&gt;A C&gt;G C&gt;T T&gt;A T&gt;C T&gt;G Filter
+1: 243621  35   3  27   3  11   3      .</code></pre>
+<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="somatic-interaction" class="section level2">
+<h2>Somatic Interaction</h2>
+<pre class="r"><code>somaticInteractions(maf = brn, top = 25, pvalue = c(0.05, 0.1))</code></pre>
+<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>            gene_set      pvalue
+1:  UBR4, NASP, LRP8 0.001908494
+2: UBR4, NASP, FSIP2 0.005502130
+3:  NASP, LRP8, HRNR 0.014583475
+4:  NASP, RYR2, HRNR 0.034780627
+5:   UBR4, TTN, HRNR 0.035086282
+6:   UBR4, NASP, TTN 0.035719158
+7:  UBR4, HSPG2, TTN 0.048151676</code></pre>
+<pre><code>$pairs
+       gene1    gene2       pValue   oddsRatio 00 11 01 10
+ 1: C1orf173 KIAA1107 2.306539e-05         Inf 20  7  2 NA
+ 2: C1orf173    HMCN1 5.074386e-04         Inf 17  7  5 NA
+ 3: KIAA1107    HMCN1 8.622063e-04 27.15191000 16  8  4  1
+ 4:    HSPG2     SPEN 1.099450e-03 30.99699184 19  6  1  3
+ 5:   VPS13D C1orf173 3.207371e-03 20.59860187 20  5  2  2
+ 6:    FSIP2      TTN 3.289564e-03         Inf 12  9  8 NA
+ 7: KIAA1107     ASPM 3.888266e-03 15.50522058 18  6  2  3
+ 8:    OBSCN      NEB 5.060454e-03 11.82225752 15  8  3  3
+ 9:    DOCK7     UBR4 5.539538e-03 17.90383449 17  6  5  1
+10: C1orf173     ASPM 7.916555e-03 13.70836136 19  5  3  2
+11: C1orf173    BIRC6 1.643793e-02 10.04777129 18  5  4  2
+12:   VPS13D KIAA1107 1.643793e-02 10.04777129 18  5  4  2
+13:     UBR4      TTN 1.772989e-02  0.11787639  4  3 14  8
+14:    KIF1B    CSMD2 1.876195e-02  8.96961814 18  5  3  3
+15:      TTN     FEZ2 1.908606e-02 11.36810774 11  9  1  8
+16:     NASP     LRP8 2.602032e-02  0.08543342  7  1 15  6
+17:     SPEN    MACF1 2.602032e-02 11.70502193 15  6  7  1
+18:    FSIP2     FEZ2 3.167777e-02  7.31268601 16  6  4  3
+19: KIAA1107     FEZ2 3.167777e-02  7.31268601 16  6  4  3
+20:     SPEN C1orf173 3.774139e-02  7.63024506 19  4  3  3
+21:   VPS13D    DOCK7 3.774139e-02  7.63024506 19  4  3  3
+22:    HMCN1     ASPM 3.819372e-02  6.92470430 15  6  2  6
+23:     HRNR     ASPM 3.819372e-02  6.92470430 15  6  2  6
+24:    HMCN1      FLG 3.819372e-02  6.92470430 15  6  2  6
+25:      FLG     LRP8 4.434449e-02  8.67709557 12  7  9  1
+26:      NEB    BIRC6 4.784091e-02  5.58067343 15  6  3  5
+27:     RYR2    FSIP2 4.784091e-02  5.58067343 15  6  3  5
+28:     UBR4    HSPG2 4.784091e-02  5.58067343 15  6  3  5
+29:    HSPG2    IGFN1 5.017491e-02  0.16493864  7  2 13  7
+30:     FEZ2   CELSR2 6.252643e-02         Inf  7 10 12 NA
+31:     RYR2     HRNR 6.410519e-02  0.18896921  8  2 10  9
+32:      NEB      TTN 6.410519e-02  5.29186732 10  9  8  2
+33: KIAA1107      FLG 6.670301e-02  6.50545250 17  5  3  4
+34:    FSIP2    KIF1B 6.670301e-02  6.50545250 17  5  3  4
+35:      FLG C1orf173 6.756622e-02  5.54819616 18  4  3  4
+36:      FLG    DOCK7 6.756622e-02  5.54819616 18  4  3  4
+37:     ASPM     SPEN 6.756622e-02  5.54819616 18  4  3  4
+38:    CSMD2     SPEN 6.756622e-02  5.54819616 18  4  3  4
+39:     ASPM   VPS13D 6.756622e-02  5.54819616 18  4  3  4
+40:      FLG   VPS13D 6.756622e-02  5.54819616 18  4  3  4
+41:    KIF1B   VPS13D 6.756622e-02  5.54819616 18  4  3  4
+42:   VPS13D    OBSCN 7.121824e-02  6.17943953 16  5  6  2
+43:     SPEN     UBR4 7.121824e-02  6.17943953 16  5  6  2
+44:   VPS13D    IGFN1 8.007663e-02  8.06970264 13  6  9  1
+45:    HSPG2    BIRC6 8.798907e-02  4.68218980 16  5  4  4
+46: KIAA1107    BIRC6 8.798907e-02  4.68218980 16  5  4  4
+47:      TTN   CELSR2 9.204372e-02  5.02716150  5 15  7  2
+48:     SPEN    HMCN1 9.204372e-02  5.02716150 15  5  7  2
+49:   VPS13D    HMCN1 9.204372e-02  5.02716150 15  5  7  2
+50:    DOCK7     HRNR 9.204372e-02  5.02716150 15  5  7  2
+51:     NASP     HRNR 9.204372e-02  5.02716150 15  5  7  2
+52:     SPEN     HRNR 9.204372e-02  5.02716150 15  5  7  2
+53:    CSMD2    MACF1 9.232051e-02  5.61012834 14  6  7  2
+54: C1orf173     LRP8 9.272031e-02  6.76147080 12  6 10  1
+55:    DOCK7     LRP8 9.272031e-02  6.76147080 12  6 10  1
+56:   VPS13D     LRP8 9.272031e-02  6.76147080 12  6 10  1
+57:     UBR4    FSIP2 9.590260e-02  0.13339238 10  1  8 10
+       gene1    gene2       pValue   oddsRatio 00 11 01 10
+                 Event
+ 1:       Co_Occurance
+ 2:       Co_Occurance
+ 3:       Co_Occurance
+ 4:       Co_Occurance
+ 5:       Co_Occurance
+ 6:       Co_Occurance
+ 7:       Co_Occurance
+ 8:       Co_Occurance
+ 9:       Co_Occurance
+10:       Co_Occurance
+11:       Co_Occurance
+12:       Co_Occurance
+13: Mutually_Exclusive
+14:       Co_Occurance
+15:       Co_Occurance
+16: Mutually_Exclusive
+17:       Co_Occurance
+18:       Co_Occurance
+19:       Co_Occurance
+20:       Co_Occurance
+21:       Co_Occurance
+22:       Co_Occurance
+23:       Co_Occurance
+24:       Co_Occurance
+25:       Co_Occurance
+26:       Co_Occurance
+27:       Co_Occurance
+28:       Co_Occurance
+29: Mutually_Exclusive
+30:       Co_Occurance
+31: Mutually_Exclusive
+32:       Co_Occurance
+33:       Co_Occurance
+34:       Co_Occurance
+35:       Co_Occurance
+36:       Co_Occurance
+37:       Co_Occurance
+38:       Co_Occurance
+39:       Co_Occurance
+40:       Co_Occurance
+41:       Co_Occurance
+42:       Co_Occurance
+43:       Co_Occurance
+44:       Co_Occurance
+45:       Co_Occurance
+46:       Co_Occurance
+47:       Co_Occurance
+48:       Co_Occurance
+49:       Co_Occurance
+50:       Co_Occurance
+51:       Co_Occurance
+52:       Co_Occurance
+53:       Co_Occurance
+54:       Co_Occurance
+55:       Co_Occurance
+56:       Co_Occurance
+57: Mutually_Exclusive
+                 Event
+
+$gene_sets
+            gene_set      pvalue
+1:  UBR4, NASP, LRP8 0.001908494
+2: UBR4, NASP, FSIP2 0.005502130
+3:  NASP, LRP8, HRNR 0.014583475
+4:  NASP, RYR2, HRNR 0.034780627
+5:   UBR4, TTN, HRNR 0.035086282
+6:   UBR4, NASP, TTN 0.035719158
+7:  UBR4, HSPG2, TTN 0.048151676</code></pre>
+</div>
+<div id="oncodrive" class="section level2">
+<h2>Oncodrive</h2>
+<pre class="r"><code>brn.drivers = oncodrive(maf = brn, AACol = &#39;HGVSp&#39;, minMut = 5, pvalMethod = &#39;zscore&#39;)</code></pre>
+<pre class="r"><code>plotOncodrive(res = brn.drivers, fdrCutOff = 0.1, useFraction = TRUE)</code></pre>
+<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="pfam-domains" class="section level2">
+<h2>PFAM domains</h2>
+<pre class="r"><code>brn.pfam = pfamDomains(maf = brn, AACol = &#39;HGVSp&#39;, top = 10)</code></pre>
+<pre><code>Warning in pfamDomains(maf = brn, AACol = &quot;HGVSp&quot;, top = 10): NAs
+introduced by coercion</code></pre>
+<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /> ## APOBEC Signature</p>
+</div>
+<div id="singnature-analysis" class="section level2">
+<h2>Singnature analysis</h2>
+<pre class="r"><code>require(&#39;NMF&#39;)
+brn.sign = extractSignatures(mat = brn.tnm, nTry = 6, plotBestFitRes = FALSE)</code></pre>
+<pre><code>   method   seed rng metric rank sparseness.basis sparseness.coef
+1: brunet random   1     KL    2        0.3334790       0.5274476
+2: brunet random   1     KL    3        0.4009377       0.4369627
+3: brunet random   2     KL    4        0.4013122       0.3947774
+4: brunet random   3     KL    5        0.3944188       0.4515262
+5: brunet random   1     KL    6        0.4021486       0.3827709
+          rss      evar silhouette.coef silhouette.basis residuals niter
+1: 1061813.02 0.9347200       1.0000000        1.0000000 3688.5128   470
+2:  179331.03 0.9889748       0.9026969        0.8232811 1955.6468   480
+3:   97910.42 0.9939805       0.8453045        0.7425779 1080.8709   480
+4:   70307.19 0.9956775       0.6838958        0.5295753  929.4269   490
+5:   62601.48 0.9961513       0.4684342        0.4485394  829.4023  1180
+     cpu cpu.all nrun cophenetic dispersion silhouette.consensus
+1: 0.096   2.204   10  0.9997104  0.9760285            0.9927203
+2: 0.112   2.308   10  0.9987707  0.9589061            0.9500000
+3: 0.260   2.192   10  0.9951558  0.9406421            0.8942529
+4: 0.200   2.260   10  0.9375319  0.6689655            0.6622095
+5: 0.308   2.192   10  0.9497675  0.6773365            0.6510011</code></pre>
+<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="visualizing-signatures" class="section level2">
+<h2>Visualizing Signatures</h2>
+<pre class="r"><code>plotSignatures(brn.sign, title_size = 0.8)</code></pre>
+<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="session-information" class="section level2">
+<h2>Session information</h2>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 3.5.0 (2018-04-23)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 16.04.5 LTS
+
+Matrix products: default
+BLAS: /opt/microsoft/ropen/3.5.0/lib64/R/lib/libRblas.so
+LAPACK: /opt/microsoft/ropen/3.5.0/lib64/R/lib/libRlapack.so
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] parallel  stats     graphics  grDevices utils     datasets  methods  
+[8] base     
+
+other attached packages:
+ [1] doParallel_1.0.13   iterators_1.0.10    foreach_1.5.0      
+ [4] NMF_0.21.0          cluster_2.0.7-1     rngtools_1.3.1     
+ [7] pkgmaker_0.27       registry_0.5        data.table_1.11.4  
+[10] maftools_1.6.07     Biobase_2.40.0      BiocGenerics_0.26.0
+
+loaded via a namespace (and not attached):
+  [1] bitops_1.0-6                matrixStats_0.54.0         
+  [3] bit64_0.9-7                 httr_1.3.1                 
+  [5] progress_1.2.0              RColorBrewer_1.1-2         
+  [7] rprojroot_1.3-2             GenomeInfoDb_1.16.0        
+  [9] tools_3.5.0                 backports_1.1.2            
+ [11] R6_2.2.2                    DBI_1.0.0                  
+ [13] lazyeval_0.2.1              colorspace_1.3-2           
+ [15] GetoptLong_0.1.7            withr_2.1.2                
+ [17] gridExtra_2.3               prettyunits_1.0.2          
+ [19] tidyselect_0.2.4            bit_1.1-14                 
+ [21] compiler_3.5.0              git2r_0.21.0               
+ [23] DelayedArray_0.6.6          labeling_0.3               
+ [25] slam_0.1-43                 rtracklayer_1.40.6         
+ [27] scales_1.0.0                stringr_1.3.1              
+ [29] digest_0.6.17               Rsamtools_1.32.3           
+ [31] rmarkdown_1.9               R.utils_2.6.0              
+ [33] cometExactTest_0.1.5        XVector_0.20.0             
+ [35] pkgconfig_2.0.2             htmltools_0.3.6            
+ [37] changepoint_2.2.2           bibtex_0.4.2               
+ [39] BSgenome_1.48.0             rlang_0.2.2                
+ [41] GlobalOptions_0.1.0         RSQLite_2.1.1              
+ [43] shape_1.4.4                 bindr_0.1.1                
+ [45] zoo_1.8-2                   mclust_5.4                 
+ [47] BiocParallel_1.14.2         dplyr_0.7.6                
+ [49] R.oo_1.22.0                 VariantAnnotation_1.26.1   
+ [51] RCurl_1.95-4.11             magrittr_1.5               
+ [53] GenomeInfoDbData_1.1.0      wordcloud_2.5              
+ [55] Matrix_1.2-14               Rcpp_0.12.18               
+ [57] munsell_0.5.0               S4Vectors_0.18.3           
+ [59] R.methodsS3_1.7.1           stringi_1.2.4              
+ [61] whisker_0.3-2               yaml_2.1.19                
+ [63] SummarizedExperiment_1.10.1 zlibbioc_1.26.0            
+ [65] plyr_1.8.4                  grid_3.5.0                 
+ [67] blob_1.1.1                  ggrepel_0.8.0              
+ [69] crayon_1.3.4                lattice_0.20-35            
+ [71] cowplot_0.9.3               Biostrings_2.48.0          
+ [73] splines_3.5.0               GenomicFeatures_1.32.2     
+ [75] hms_0.4.2                   circlize_0.4.4             
+ [77] knitr_1.20                  ComplexHeatmap_1.18.0      
+ [79] pillar_1.3.0                GenomicRanges_1.32.6       
+ [81] rjson_0.2.20                biomaRt_2.36.1             
+ [83] reshape2_1.4.3              codetools_0.2-15           
+ [85] stats4_3.5.0                XML_3.98-1.16              
+ [87] glue_1.3.0                  evaluate_0.10.1            
+ [89] gtable_0.2.0                purrr_0.2.5                
+ [91] assertthat_0.2.0            ggplot2_3.0.0              
+ [93] gridBase_0.4-7              xtable_1.8-3               
+ [95] survival_2.41-3             tibble_1.4.2               
+ [97] GenomicAlignments_1.16.0    AnnotationDbi_1.42.1       
+ [99] memoise_1.1.0               IRanges_2.14.11            
+[101] workflowr_1.0.1             bindrcpp_0.2.2             </code></pre>
+</div>
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+<hr>
+<p>
+  This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a>
+  analysis was created with
+  <a href="https://github.com/jdblischak/workflowr">workflowr</a> 1.0.1
+</p>
+<hr>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
