@@ -1,0 +1,2 @@
+Chromosome	Start_Position	End_Position	nMuts	Avg_intermutation_dist	Size	Tumor_Sample_Barcode	C>A	C>G	C>T	T>A	T>C	T>G	Filter
+2	179394854	179638475	82	3007.67	243621	24	35	3	27	3	11	3	.

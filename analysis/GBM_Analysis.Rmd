@@ -39,13 +39,13 @@ plotmafSummary(maf = brn, rmOutlier = TRUE, addStat = 'median', dashboard = TRUE
 oncoplot(maf = brn, top = 20)
 ```
 
-## plot titv summary
+## TiTv summary
 
 ```{r}
 brn.titv = titv(maf = brn, plot = FALSE, useSyn = TRUE)
 plotTiTv(res = brn.titv)
 ```
-## lolipop plots
+## Lolipop plots
 ```{r}
 lollipopPlot(maf = brn, gene = 'TP53', AACol = 'HGVSp', showMutationRate = TRUE)
 ```
@@ -54,7 +54,7 @@ lollipopPlot(maf = brn, gene = 'TP53', AACol = 'HGVSp', showMutationRate = TRUE)
 lollipopPlot(maf = brn, gene = 'MEGF6', AACol = 'HGVSp', showMutationRate = TRUE)
 ```
 
-##  A rainfall plot
+##  Rainfall plot
 
 ```{r}
 rainfallPlot(maf = brn, detectChangePoints = TRUE, fontSize = 12, pointSize = 0.6)

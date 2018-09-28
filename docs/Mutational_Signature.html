@@ -322,7 +322,8 @@ div.section {
 <ul>
 <li>
 <details>
-<p><summary> <strong style="color:red;">✖</strong> <strong>R Markdown file:</strong> uncommitted changes </summary> The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p><summary> <strong style="color:blue;">✔</strong> <strong>R Markdown file:</strong> up-to-date </summary></p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </details>
 </li>
 <li>
@@ -345,7 +346,7 @@ div.section {
 </li>
 <li>
 <details>
-<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> 72fc62c </summary></p>
+<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> 3d8fb5f </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
@@ -355,17 +356,74 @@ Ignored files:
 
 Untracked files:
     Untracked:  24_changePoints.tsv
-    Untracked:  Brn_sig.maf
-    Untracked:  Mutational_Signature_files/
-    Untracked:  analysis/GBM_Analysis.Rmd
-    Untracked:  analysis/Mutational_Signature.Rmd
-    Untracked:  docs/figure/
 
 </code></pre>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
 </details>
 </li>
 </ul>
+<details>
+<summary> <small><strong>Expand here to see past versions:</strong></small> </summary>
+<ul>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+File
+</th>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+<th style="text-align:left;">
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+3d8fb5f
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+<td style="text-align:left;">
+added signature analysis
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+3d8fb5f
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+<td style="text-align:left;">
+added signature analysis
+</td>
+</tr>
+</tbody>
+</table>
+</ul>
+</details>
 <hr />
 <div id="reading-reference-genome" class="section level2">
 <h2>Reading reference genome</h2>
@@ -441,12 +499,77 @@ head(context, 12)</code></pre>
 c6  539  417 1730 266 1339 304        656      1074</code></pre>
 <pre class="r"><code> plot_spectrum(type_occurrences)</code></pre>
 <p><img src="figure/Mutational_Signature.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-4-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+3d8fb5f
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+</tr>
+</tbody>
+</table>
+</details>
 </div>
 <div id="profile" class="section level2">
 <h2>96 profile</h2>
 <pre class="r"><code>mut_mat &lt;- mut_matrix(vcf_list = vcfs, ref_genome = ref_genome)
 plot_96_profile(mut_mat[,c(1,7)])</code></pre>
-<p><img src="figure/Mutational_Signature.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /> ## De Novo Signature</p>
+<p><img src="figure/Mutational_Signature.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-5-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+3d8fb5f
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+</tr>
+</tbody>
+</table>
+</details>
+</div>
+<div id="de-novo-signature" class="section level2">
+<h2>De Novo Signature</h2>
 <pre class="r"><code>mut_mat &lt;- mut_mat + 0.0001
 library(&quot;NMF&quot;)
 #estimate &lt;- nmf(mut_mat, rank=2:5, method=&quot;brunet&quot;, nrun=10, seed=123456)</code></pre>
@@ -482,6 +605,37 @@ row.names(cancer_signatures) = cancer_signatures$`Somatic Mutation Type`</code><
 col_order = colnames(cancer_signatures)[sig_hclust$order]
 plot_96_profile(cancer_signatures[,1:4], condensed = TRUE, ymax = 0.3)</code></pre>
 <p><img src="figure/Mutational_Signature.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-10-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+3d8fb5f
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+</tr>
+</tbody>
+</table>
+</details>
 </div>
 <div id="cosmic-similarity" class="section level2">
 <h2>Cosmic Similarity</h2>
@@ -492,6 +646,37 @@ plot_96_profile(cancer_signatures[,1:4], condensed = TRUE, ymax = 0.3)</code></p
  col_order = col_order,
  cluster_rows = TRUE)</code></pre>
 <p><img src="figure/Mutational_Signature.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-11-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+3d8fb5f
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+</tr>
+</tbody>
+</table>
+</details>
 </div>
 <div id="session-information" class="section level2">
 <h2>Session information</h2>
