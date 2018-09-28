@@ -322,7 +322,8 @@ div.section {
 <ul>
 <li>
 <details>
-<p><summary> <strong style="color:red;">✖</strong> <strong>R Markdown file:</strong> uncommitted changes </summary> The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p><summary> <strong style="color:blue;">✔</strong> <strong>R Markdown file:</strong> up-to-date </summary></p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </details>
 </li>
 <li>
@@ -345,7 +346,7 @@ div.section {
 </li>
 <li>
 <details>
-<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> 72fc62c </summary></p>
+<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> 3d8fb5f </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
@@ -355,17 +356,74 @@ Ignored files:
 
 Untracked files:
     Untracked:  24_changePoints.tsv
-    Untracked:  Brn_sig.maf
-    Untracked:  Mutational_Signature_files/
-    Untracked:  analysis/GBM_Analysis.Rmd
-    Untracked:  analysis/Mutational_Signature.Rmd
-    Untracked:  docs/figure/
 
 </code></pre>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
 </details>
 </li>
 </ul>
+<details>
+<summary> <small><strong>Expand here to see past versions:</strong></small> </summary>
+<ul>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+File
+</th>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+<th style="text-align:left;">
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+3d8fb5f
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+<td style="text-align:left;">
+added signature analysis
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+3d8fb5f
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+<td style="text-align:left;">
+added signature analysis
+</td>
+</tr>
+</tbody>
+</table>
+</ul>
+</details>
 <hr />
 <div id="read-in-the-data" class="section level2">
 <h2>Read in the Data</h2>
@@ -669,17 +727,110 @@ brn &lt;- read.maf(maf,clin)</code></pre>
 <pre class="r"><code>plotmafSummary(maf = brn, rmOutlier = TRUE, addStat = &#39;median&#39;, dashboard = TRUE, 
                titvRaw = FALSE)</code></pre>
 <p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-3-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+3d8fb5f
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+</tr>
+</tbody>
+</table>
+</details>
 </div>
 <div id="oncoplot" class="section level2">
 <h2>Oncoplot</h2>
 <pre class="r"><code>oncoplot(maf = brn, top = 20)</code></pre>
 <p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-4-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+3d8fb5f
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+</tr>
+</tbody>
+</table>
+</details>
 </div>
 <div id="plot-titv-summary" class="section level2">
 <h2>plot titv summary</h2>
 <pre class="r"><code>brn.titv = titv(maf = brn, plot = FALSE, useSyn = TRUE)
 plotTiTv(res = brn.titv)</code></pre>
 <p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-5-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+3d8fb5f
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+</tr>
+</tbody>
+</table>
+</details>
 <pre><code>NULL</code></pre>
 </div>
 <div id="lolipop-plots" class="section level2">
@@ -695,8 +846,70 @@ plotTiTv(res = brn.titv)</code></pre>
 7: TP53 NM_001126114 NP_001119586       341
 8: TP53 NM_001126116 NP_001119588       209</code></pre>
 <p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-6-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+3d8fb5f
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+</tr>
+</tbody>
+</table>
+</details>
 <pre class="r"><code>lollipopPlot(maf = brn, gene = &#39;MEGF6&#39;, AACol = &#39;HGVSp&#39;, showMutationRate = TRUE)</code></pre>
 <p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-7-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+3d8fb5f
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+</tr>
+</tbody>
+</table>
+</details>
 </div>
 <div id="a-rainfall-plot" class="section level2">
 <h2>A rainfall plot</h2>
@@ -706,11 +919,73 @@ plotTiTv(res = brn.titv)</code></pre>
      Size C&gt;A C&gt;G C&gt;T T&gt;A T&gt;C T&gt;G Filter
 1: 243621  35   3  27   3  11   3      .</code></pre>
 <p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-8-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+3d8fb5f
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+</tr>
+</tbody>
+</table>
+</details>
 </div>
 <div id="somatic-interaction" class="section level2">
 <h2>Somatic Interaction</h2>
 <pre class="r"><code>somaticInteractions(maf = brn, top = 25, pvalue = c(0.05, 0.1))</code></pre>
 <p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-9-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+3d8fb5f
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+</tr>
+</tbody>
+</table>
+</details>
 <pre><code>            gene_set      pvalue
 1:  UBR4, NASP, LRP8 0.001908494
 2: UBR4, NASP, FSIP2 0.005502130
@@ -854,13 +1129,78 @@ $gene_sets
 <pre class="r"><code>brn.drivers = oncodrive(maf = brn, AACol = &#39;HGVSp&#39;, minMut = 5, pvalMethod = &#39;zscore&#39;)</code></pre>
 <pre class="r"><code>plotOncodrive(res = brn.drivers, fdrCutOff = 0.1, useFraction = TRUE)</code></pre>
 <p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-10-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+3d8fb5f
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+</tr>
+</tbody>
+</table>
+</details>
 </div>
 <div id="pfam-domains" class="section level2">
 <h2>PFAM domains</h2>
 <pre class="r"><code>brn.pfam = pfamDomains(maf = brn, AACol = &#39;HGVSp&#39;, top = 10)</code></pre>
 <pre><code>Warning in pfamDomains(maf = brn, AACol = &quot;HGVSp&quot;, top = 10): NAs
 introduced by coercion</code></pre>
-<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /> ## APOBEC Signature</p>
+<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-11-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+3d8fb5f
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+</tr>
+</tbody>
+</table>
+</details>
+</div>
+<div id="apobec-signature" class="section level2">
+<h2>APOBEC Signature</h2>
 </div>
 <div id="singnature-analysis" class="section level2">
 <h2>Singnature analysis</h2>
@@ -879,17 +1219,79 @@ brn.sign = extractSignatures(mat = brn.tnm, nTry = 6, plotBestFitRes = FALSE)</c
 4:   70307.19 0.9956775       0.6838958        0.5295753  929.4269   490
 5:   62601.48 0.9961513       0.4684342        0.4485394  829.4023  1180
      cpu cpu.all nrun cophenetic dispersion silhouette.consensus
-1: 0.096   2.204   10  0.9997104  0.9760285            0.9927203
-2: 0.112   2.308   10  0.9987707  0.9589061            0.9500000
-3: 0.260   2.192   10  0.9951558  0.9406421            0.8942529
-4: 0.200   2.260   10  0.9375319  0.6689655            0.6622095
-5: 0.308   2.192   10  0.9497675  0.6773365            0.6510011</code></pre>
+1: 0.172   2.548   10  0.9997104  0.9760285            0.9927203
+2: 0.152   2.388   10  0.9987707  0.9589061            0.9500000
+3: 0.168   2.420   10  0.9951558  0.9406421            0.8942529
+4: 0.212   2.464   10  0.9375319  0.6689655            0.6622095
+5: 0.400   2.468   10  0.9497675  0.6773365            0.6510011</code></pre>
 <p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-13-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+3d8fb5f
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+</tr>
+</tbody>
+</table>
+</details>
 </div>
 <div id="visualizing-signatures" class="section level2">
 <h2>Visualizing Signatures</h2>
 <pre class="r"><code>plotSignatures(brn.sign, title_size = 0.8)</code></pre>
 <p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-14-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+3d8fb5f
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+</tr>
+</tbody>
+</table>
+</details>
 </div>
 <div id="session-information" class="section level2">
 <h2>Session information</h2>
