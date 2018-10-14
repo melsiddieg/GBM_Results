@@ -47,7 +47,7 @@ plotTiTv(res = brn.titv)
 ```
 ## Lolipop plots
 ```{r}
-lollipopPlot(maf = brn, gene = 'TP53', AACol = 'HGVSp', showMutationRate = TRUE)
+lollipopPlot(maf = brn, gene = 'IGFN1', AACol = 'HGVSp', showMutationRate = TRUE)
 ```
  
 ```{r}

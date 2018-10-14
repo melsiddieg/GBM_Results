@@ -345,18 +345,16 @@ div.section {
 </li>
 <li>
 <details>
-<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/melsiddieg/GBM_Results/tree/120de3842951bbe524113a16148aa370d5a69506" target="_blank">120de38</a> </summary></p>
+<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/melsiddieg/GBM_Results/tree/257e6ab86601223121261920503c7ea375c8f2f1" target="_blank">257e6ab</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    analysis/GBM_Analysis_cache/
-    Ignored:    analysis/figure/
 
 Unstaged changes:
     Modified:   analysis/GBM_Analysis.Rmd
-    Modified:   analysis/_site.yml
 
 </code></pre>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
@@ -387,6 +385,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/melsiddieg/GBM_Results/blob/257e6ab86601223121261920503c7ea375c8f2f1/analysis/GBM_Analysis.Rmd" target="_blank">257e6ab</a>
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-10-14
+</td>
+<td style="text-align:left;">
+new final version
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/melsiddieg/GBM_Results/257e6ab86601223121261920503c7ea375c8f2f1/docs/GBM_Analysis.html" target="_blank">257e6ab</a>
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-10-14
+</td>
+<td style="text-align:left;">
+new final version
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 Rmd
@@ -870,16 +902,7 @@ melsiddieg
 </div>
 <div id="lolipop-plots" class="section level2">
 <h2>Lolipop plots</h2>
-<pre class="r"><code>lollipopPlot(maf = brn, gene = &#39;TP53&#39;, AACol = &#39;HGVSp&#39;, showMutationRate = TRUE)</code></pre>
-<pre><code>   HGNC    refseq.ID   protein.ID aa.length
-1: TP53    NM_000546    NP_000537       393
-2: TP53 NM_001126112 NP_001119584       393
-3: TP53 NM_001126118 NP_001119590       354
-4: TP53 NM_001126115 NP_001119587       261
-5: TP53 NM_001126113 NP_001119585       346
-6: TP53 NM_001126117 NP_001119589       214
-7: TP53 NM_001126114 NP_001119586       341
-8: TP53 NM_001126116 NP_001119588       209</code></pre>
+<pre class="r"><code>lollipopPlot(maf = brn, gene = &#39;IGFN1&#39;, AACol = &#39;HGVSp&#39;, showMutationRate = TRUE)</code></pre>
 <p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <details>
 <summary><em>Expand here to see past versions of unnamed-chunk-6-1.png:</em></summary>
@@ -1251,11 +1274,11 @@ brn.sign = extractSignatures(mat = brn.tnm, nTry = 6, plotBestFitRes = FALSE)</c
 4:   70307.19 0.9956775       0.6838958        0.5295753  929.4269   490
 5:   62601.48 0.9961513       0.4684342        0.4485394  829.4023  1180
      cpu cpu.all nrun cophenetic dispersion silhouette.consensus
-1: 0.148   2.180   10  0.9997104  0.9760285            0.9927203
-2: 0.088   2.260   10  0.9987707  0.9589061            0.9500000
-3: 0.104   2.168   10  0.9951558  0.9406421            0.8942529
-4: 0.180   2.892   10  0.9375319  0.6689655            0.6622095
-5: 0.452   2.320   10  0.9497675  0.6773365            0.6510011</code></pre>
+1: 0.136   2.508   10  0.9997104  0.9760285            0.9927203
+2: 0.156   2.512   10  0.9987707  0.9589061            0.9500000
+3: 0.184   2.336   10  0.9951558  0.9406421            0.8942529
+4: 0.160   3.224   10  0.9375319  0.6689655            0.6622095
+5: 0.440   2.520   10  0.9497675  0.6773365            0.6510011</code></pre>
 <p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
 <details>
 <summary><em>Expand here to see past versions of unnamed-chunk-13-1.png:</em></summary>
@@ -1333,6 +1356,37 @@ melsiddieg
   2   3   5  16 </code></pre>
 <pre class="r"><code>plotEnrichmentResults(enrich_res = brn.ce, pVal = 0.05)</code></pre>
 <p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<details>
+<summary><em>Expand here to see past versions of unnamed-chunk-16-1.png:</em></summary>
+<table style = "border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="https://github.com/melsiddieg/GBM_Results/blob/257e6ab86601223121261920503c7ea375c8f2f1/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-16-1.png" target="_blank">257e6ab</a>
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-10-14
+</td>
+</tr>
+</tbody>
+</table>
+</details>
 </div>
 <div id="session-information" class="section level2">
 <h2>Session information</h2>
