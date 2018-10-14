@@ -3,8 +3,8 @@ title: "GBM Analysis Report"
 author: "Mohammed Omar Elsiddieg Abdallah"
 date: "9/12/2018"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 ```{r, message=FALSE}
 library(maftools)
 library(data.table)
-maf <- fread('/home/sieny/Gemini_Data/Brain/mskcc-vcf2maf-decbf60/Annoted_Mutect_brain5.maf')
+maf <- fread('/home/sieny/Gemini_Data/Brain/mskcc-vcf2maf-decbf60/Annoted_Mutect_brain6_final.maf')
 clin <- fread('/home/sieny/Gemini_Data/Brain/cData.csv')
 brn <- read.maf(maf,clin)
 ```
@@ -82,12 +82,12 @@ plotOncodrive(res = brn.drivers, fdrCutOff = 0.1, useFraction = TRUE)
 ```{r}
 brn.pfam = pfamDomains(maf = brn, AACol = 'HGVSp', top = 10)
 ```
-## APOBEC Signature
 
 ```{r ,include=FALSE}
 brn.tnm = trinucleotideMatrix(maf = brn, 
                               ref_genome = '/home/sieny/snpEff/Human_Ref/hg19.fa', 
                               prefix="chr",add = TRUE, ignoreChr = 'chr23', useSyn = TRUE)
+## plotApobecDiff(tnm = brn.tnm, maf = brn)
 ```
 
 ## Singnature analysis
@@ -103,4 +103,16 @@ brn.sign = extractSignatures(mat = brn.tnm, nTry = 6, plotBestFitRes = FALSE)
 plotSignatures(brn.sign, title_size = 0.8)
 ```
 
+```{r, include=FALSE,eval=FALSE}
+brn.se = signatureEnrichment(maf = brn, sig_res = brn.sign,minMut = 20)
+
+```
+
+## Clinical Enrichment
+```{r}
+brn.ce = clinicalEnrichment(maf = brn, clinicalFeature = 'Grade')
+plotEnrichmentResults(enrich_res = brn.ce, pVal = 0.05)
+
+
+```
 

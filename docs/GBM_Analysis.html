@@ -273,7 +273,7 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">GBM_Analysis</a>
+      <a class="navbar-brand" href="index.html">GBM Analysis</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -289,7 +289,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/jdblischak/workflowr">
+  <a href="https://github.com/melsiddieg">
     <span class="fa fa-github"></span>
      
   </a>
@@ -317,13 +317,12 @@ div.section {
 </div>
 
 
-<p><strong>Last updated:</strong> 2018-09-28</p>
+<p><strong>Last updated:</strong> 2018-10-14</p>
 <strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
 <ul>
 <li>
 <details>
-<p><summary> <strong style="color:blue;">✔</strong> <strong>R Markdown file:</strong> up-to-date </summary></p>
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p><summary> <strong style="color:red;">✖</strong> <strong>R Markdown file:</strong> uncommitted changes </summary> The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </details>
 </li>
 <li>
@@ -346,16 +345,18 @@ div.section {
 </li>
 <li>
 <details>
-<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> 3d8fb5f </summary></p>
+<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/melsiddieg/GBM_Results/tree/120de3842951bbe524113a16148aa370d5a69506" target="_blank">120de38</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    analysis/GBM_Analysis_cache/
+    Ignored:    analysis/figure/
 
-Untracked files:
-    Untracked:  24_changePoints.tsv
+Unstaged changes:
+    Modified:   analysis/GBM_Analysis.Rmd
+    Modified:   analysis/_site.yml
 
 </code></pre>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
@@ -391,7 +392,41 @@ Message
 Rmd
 </td>
 <td style="text-align:left;">
-3d8fb5f
+<a href="https://github.com/melsiddieg/GBM_Results/blob/9d408d51be786656c9ccdadfb3b1d6abd4643906/analysis/GBM_Analysis.Rmd" target="_blank">9d408d5</a>
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+<td style="text-align:left;">
+testing remote
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/melsiddieg/GBM_Results/91131de808aecbe5e9cbe745a12189aed243fff9/docs/GBM_Analysis.html" target="_blank">91131de</a>
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-09-28
+</td>
+<td style="text-align:left;">
+Build site.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/analysis/GBM_Analysis.Rmd" target="_blank">3d8fb5f</a>
 </td>
 <td style="text-align:left;">
 melsiddieg
@@ -408,7 +443,7 @@ added signature analysis
 html
 </td>
 <td style="text-align:left;">
-3d8fb5f
+<a href="https://cdn.rawgit.com/melsiddieg/GBM_Results/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/GBM_Analysis.html" target="_blank">3d8fb5f</a>
 </td>
 <td style="text-align:left;">
 melsiddieg
@@ -429,7 +464,7 @@ added signature analysis
 <h2>Read in the Data</h2>
 <pre class="r"><code>library(maftools)
 library(data.table)
-maf &lt;- fread(&#39;/home/sieny/Gemini_Data/Brain/mskcc-vcf2maf-decbf60/Annoted_Mutect_brain5.maf&#39;)
+maf &lt;- fread(&#39;/home/sieny/Gemini_Data/Brain/mskcc-vcf2maf-decbf60/Annoted_Mutect_brain6_final.maf&#39;)
 clin &lt;- fread(&#39;/home/sieny/Gemini_Data/Brain/cData.csv&#39;)
 brn &lt;- read.maf(maf,clin)</code></pre>
 <pre><code>               ID     N
@@ -746,7 +781,7 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
-3d8fb5f
+<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-3-1.png" target="_blank">3d8fb5f</a>
 </td>
 <td style="text-align:left;">
 melsiddieg
@@ -782,7 +817,7 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
-3d8fb5f
+<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-4-1.png" target="_blank">3d8fb5f</a>
 </td>
 <td style="text-align:left;">
 melsiddieg
@@ -795,8 +830,8 @@ melsiddieg
 </table>
 </details>
 </div>
-<div id="plot-titv-summary" class="section level2">
-<h2>plot titv summary</h2>
+<div id="titv-summary" class="section level2">
+<h2>TiTv summary</h2>
 <pre class="r"><code>brn.titv = titv(maf = brn, plot = FALSE, useSyn = TRUE)
 plotTiTv(res = brn.titv)</code></pre>
 <p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
@@ -819,7 +854,7 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
-3d8fb5f
+<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-5-1.png" target="_blank">3d8fb5f</a>
 </td>
 <td style="text-align:left;">
 melsiddieg
@@ -834,7 +869,7 @@ melsiddieg
 <pre><code>NULL</code></pre>
 </div>
 <div id="lolipop-plots" class="section level2">
-<h2>lolipop plots</h2>
+<h2>Lolipop plots</h2>
 <pre class="r"><code>lollipopPlot(maf = brn, gene = &#39;TP53&#39;, AACol = &#39;HGVSp&#39;, showMutationRate = TRUE)</code></pre>
 <pre><code>   HGNC    refseq.ID   protein.ID aa.length
 1: TP53    NM_000546    NP_000537       393
@@ -865,7 +900,7 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
-3d8fb5f
+<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-6-1.png" target="_blank">3d8fb5f</a>
 </td>
 <td style="text-align:left;">
 melsiddieg
@@ -898,7 +933,7 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
-3d8fb5f
+<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-7-1.png" target="_blank">3d8fb5f</a>
 </td>
 <td style="text-align:left;">
 melsiddieg
@@ -911,8 +946,8 @@ melsiddieg
 </table>
 </details>
 </div>
-<div id="a-rainfall-plot" class="section level2">
-<h2>A rainfall plot</h2>
+<div id="rainfall-plot" class="section level2">
+<h2>Rainfall plot</h2>
 <pre class="r"><code>rainfallPlot(maf = brn, detectChangePoints = TRUE, fontSize = 12, pointSize = 0.6)</code></pre>
 <pre><code>   Chromosome Start_Position End_Position nMuts Avg_intermutation_dist
 1:          2      179394854    179638475    82                3007.67
@@ -938,7 +973,7 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
-3d8fb5f
+<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-8-1.png" target="_blank">3d8fb5f</a>
 </td>
 <td style="text-align:left;">
 melsiddieg
@@ -974,7 +1009,7 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
-3d8fb5f
+<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-9-1.png" target="_blank">3d8fb5f</a>
 </td>
 <td style="text-align:left;">
 melsiddieg
@@ -1148,7 +1183,7 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
-3d8fb5f
+<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-10-1.png" target="_blank">3d8fb5f</a>
 </td>
 <td style="text-align:left;">
 melsiddieg
@@ -1186,7 +1221,7 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
-3d8fb5f
+<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-11-1.png" target="_blank">3d8fb5f</a>
 </td>
 <td style="text-align:left;">
 melsiddieg
@@ -1198,9 +1233,6 @@ melsiddieg
 </tbody>
 </table>
 </details>
-</div>
-<div id="apobec-signature" class="section level2">
-<h2>APOBEC Signature</h2>
 </div>
 <div id="singnature-analysis" class="section level2">
 <h2>Singnature analysis</h2>
@@ -1219,11 +1251,11 @@ brn.sign = extractSignatures(mat = brn.tnm, nTry = 6, plotBestFitRes = FALSE)</c
 4:   70307.19 0.9956775       0.6838958        0.5295753  929.4269   490
 5:   62601.48 0.9961513       0.4684342        0.4485394  829.4023  1180
      cpu cpu.all nrun cophenetic dispersion silhouette.consensus
-1: 0.172   2.548   10  0.9997104  0.9760285            0.9927203
-2: 0.152   2.388   10  0.9987707  0.9589061            0.9500000
-3: 0.168   2.420   10  0.9951558  0.9406421            0.8942529
-4: 0.212   2.464   10  0.9375319  0.6689655            0.6622095
-5: 0.400   2.468   10  0.9497675  0.6773365            0.6510011</code></pre>
+1: 0.148   2.180   10  0.9997104  0.9760285            0.9927203
+2: 0.088   2.260   10  0.9987707  0.9589061            0.9500000
+3: 0.104   2.168   10  0.9951558  0.9406421            0.8942529
+4: 0.180   2.892   10  0.9375319  0.6689655            0.6622095
+5: 0.452   2.320   10  0.9497675  0.6773365            0.6510011</code></pre>
 <p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
 <details>
 <summary><em>Expand here to see past versions of unnamed-chunk-13-1.png:</em></summary>
@@ -1244,7 +1276,7 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
-3d8fb5f
+<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-13-1.png" target="_blank">3d8fb5f</a>
 </td>
 <td style="text-align:left;">
 melsiddieg
@@ -1280,7 +1312,7 @@ Date
 <tbody>
 <tr>
 <td style="text-align:left;">
-3d8fb5f
+<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-14-1.png" target="_blank">3d8fb5f</a>
 </td>
 <td style="text-align:left;">
 melsiddieg
@@ -1292,6 +1324,15 @@ melsiddieg
 </tbody>
 </table>
 </details>
+</div>
+<div id="clinical-enrichment" class="section level2">
+<h2>Clinical Enrichment</h2>
+<pre class="r"><code>brn.ce = clinicalEnrichment(maf = brn, clinicalFeature = &#39;Grade&#39;)</code></pre>
+<pre><code>
+  I  II III  IV 
+  2   3   5  16 </code></pre>
+<pre class="r"><code>plotEnrichmentResults(enrich_res = brn.ce, pVal = 0.05)</code></pre>
+<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="session-information" class="section level2">
 <h2>Session information</h2>
@@ -1319,7 +1360,7 @@ attached base packages:
 other attached packages:
  [1] doParallel_1.0.13   iterators_1.0.10    foreach_1.5.0      
  [4] NMF_0.21.0          cluster_2.0.7-1     rngtools_1.3.1     
- [7] pkgmaker_0.27       registry_0.5        data.table_1.11.4  
+ [7] pkgmaker_0.27       registry_0.5        data.table_1.11.8  
 [10] maftools_1.6.07     Biobase_2.40.0      BiocGenerics_0.26.0
 
 loaded via a namespace (and not attached):
