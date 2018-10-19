@@ -36,7 +36,7 @@ plotmafSummary(maf = brn, rmOutlier = TRUE, addStat = 'median', dashboard = TRUE
 
 ```{r oncoplot}
 oncoplot(maf = brn, top = 20,clinicalFeatures = 'Classification',
-         sortByAnnotation = TRUE)
+         sortByAnnotation = TRUE,annotationColor = list(Classification=c(Low_Grade=c("#FFE4C4"),High_Grade=c("#8B4513"))))
 ```
 <!-- Query Genes -->
 ```{r new_oncoplot}
