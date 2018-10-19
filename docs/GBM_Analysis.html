@@ -317,7 +317,7 @@ div.section {
 </div>
 
 
-<p><strong>Last updated:</strong> 2018-10-14</p>
+<p><strong>Last updated:</strong> 2018-10-19</p>
 <strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
 <ul>
 <li>
@@ -345,7 +345,7 @@ div.section {
 </li>
 <li>
 <details>
-<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/melsiddieg/GBM_Results/tree/257e6ab86601223121261920503c7ea375c8f2f1" target="_blank">257e6ab</a> </summary></p>
+<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/melsiddieg/GBM_Results/tree/da03d07d18050934a5258d429f5ade361fd6a0d2" target="_blank">da03d07</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
@@ -385,6 +385,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/melsiddieg/GBM_Results/blob/da03d07d18050934a5258d429f5ade361fd6a0d2/analysis/GBM_Analysis.Rmd" target="_blank">da03d07</a>
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-10-14
+</td>
+<td style="text-align:left;">
+Fixed lolipolt
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/melsiddieg/GBM_Results/da03d07d18050934a5258d429f5ade361fd6a0d2/docs/GBM_Analysis.html" target="_blank">da03d07</a>
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-10-14
+</td>
+<td style="text-align:left;">
+Fixed lolipolt
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 Rmd
@@ -791,183 +825,33 @@ brn &lt;- read.maf(maf,clin)</code></pre>
 </div>
 <div id="maf-summary" class="section level2">
 <h2>Maf summary</h2>
-<pre class="r"><code>plotmafSummary(maf = brn, rmOutlier = TRUE, addStat = &#39;median&#39;, dashboard = TRUE, 
-               titvRaw = FALSE)</code></pre>
-<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-3-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-3-1.png" target="_blank">3d8fb5f</a>
-</td>
-<td style="text-align:left;">
-melsiddieg
-</td>
-<td style="text-align:left;">
-2018-09-28
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+<pre class="r"><code>plotmafSummary(maf = brn, rmOutlier = TRUE, addStat = &#39;median&#39;, dashboard = TRUE, titvRaw = FALSE)</code></pre>
+<p><img src="figure/GBM_Analysis.Rmd/mafsummary-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="oncoplot" class="section level2">
 <h2>Oncoplot</h2>
-<pre class="r"><code>oncoplot(maf = brn, top = 20)</code></pre>
-<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-4-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-4-1.png" target="_blank">3d8fb5f</a>
-</td>
-<td style="text-align:left;">
-melsiddieg
-</td>
-<td style="text-align:left;">
-2018-09-28
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+<pre class="r"><code>oncoplot(maf = brn, top = 20,clinicalFeatures = &#39;Classification&#39;,
+         sortByAnnotation = TRUE)</code></pre>
+<p><img src="figure/GBM_Analysis.Rmd/oncoplot-1.png" width="672" style="display: block; margin: auto;" /> <!-- Query Genes --></p>
+<pre class="r"><code>genes &lt;- c(&#39;TP53&#39;,&#39;ATRX&#39;,&#39;PGBM&#39;,&#39;NF2&#39;,&#39;BRAF&#39;,&#39;mTOR&#39;,&#39;TTN&#39;,&#39;IDH1&#39;,&#39;FRMPD4&#39;,
+           &#39;PKHD1L1&#39;,&#39;SPATA&#39;)
+oncoplot(maf = brn, genes =genes)</code></pre>
+<p><img src="figure/GBM_Analysis.Rmd/new_oncoplot-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>[1] &quot;PGBM&quot;  &quot;NF2&quot;   &quot;BRAF&quot;  &quot;mTOR&quot;  &quot;SPATA&quot;</code></pre>
 </div>
 <div id="titv-summary" class="section level2">
 <h2>TiTv summary</h2>
 <pre class="r"><code>brn.titv = titv(maf = brn, plot = FALSE, useSyn = TRUE)
 plotTiTv(res = brn.titv)</code></pre>
-<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-5-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-5-1.png" target="_blank">3d8fb5f</a>
-</td>
-<td style="text-align:left;">
-melsiddieg
-</td>
-<td style="text-align:left;">
-2018-09-28
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+<p><img src="figure/GBM_Analysis.Rmd/titv-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>NULL</code></pre>
 </div>
 <div id="lolipop-plots" class="section level2">
 <h2>Lolipop plots</h2>
 <pre class="r"><code>lollipopPlot(maf = brn, gene = &#39;IGFN1&#39;, AACol = &#39;HGVSp&#39;, showMutationRate = TRUE)</code></pre>
-<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-6-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-6-1.png" target="_blank">3d8fb5f</a>
-</td>
-<td style="text-align:left;">
-melsiddieg
-</td>
-<td style="text-align:left;">
-2018-09-28
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+<p><img src="figure/GBM_Analysis.Rmd/lolipop-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>lollipopPlot(maf = brn, gene = &#39;MEGF6&#39;, AACol = &#39;HGVSp&#39;, showMutationRate = TRUE)</code></pre>
-<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-7-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-7-1.png" target="_blank">3d8fb5f</a>
-</td>
-<td style="text-align:left;">
-melsiddieg
-</td>
-<td style="text-align:left;">
-2018-09-28
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+<p><img src="figure/GBM_Analysis.Rmd/lolipop2-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="rainfall-plot" class="section level2">
 <h2>Rainfall plot</h2>
@@ -976,74 +860,12 @@ melsiddieg
 1:          2      179394854    179638475    82                3007.67
      Size C&gt;A C&gt;G C&gt;T T&gt;A T&gt;C T&gt;G Filter
 1: 243621  35   3  27   3  11   3      .</code></pre>
-<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-8-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-8-1.png" target="_blank">3d8fb5f</a>
-</td>
-<td style="text-align:left;">
-melsiddieg
-</td>
-<td style="text-align:left;">
-2018-09-28
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+<p><img src="figure/GBM_Analysis.Rmd/rainfall-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="somatic-interaction" class="section level2">
 <h2>Somatic Interaction</h2>
 <pre class="r"><code>somaticInteractions(maf = brn, top = 25, pvalue = c(0.05, 0.1))</code></pre>
-<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-9-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-9-1.png" target="_blank">3d8fb5f</a>
-</td>
-<td style="text-align:left;">
-melsiddieg
-</td>
-<td style="text-align:left;">
-2018-09-28
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+<p><img src="figure/GBM_Analysis.Rmd/somatic_interactions-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>            gene_set      pvalue
 1:  UBR4, NASP, LRP8 0.001908494
 2: UBR4, NASP, FSIP2 0.005502130
@@ -1186,76 +1008,14 @@ $gene_sets
 <h2>Oncodrive</h2>
 <pre class="r"><code>brn.drivers = oncodrive(maf = brn, AACol = &#39;HGVSp&#39;, minMut = 5, pvalMethod = &#39;zscore&#39;)</code></pre>
 <pre class="r"><code>plotOncodrive(res = brn.drivers, fdrCutOff = 0.1, useFraction = TRUE)</code></pre>
-<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-10-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-10-1.png" target="_blank">3d8fb5f</a>
-</td>
-<td style="text-align:left;">
-melsiddieg
-</td>
-<td style="text-align:left;">
-2018-09-28
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+<p><img src="figure/GBM_Analysis.Rmd/oncodrive_onco-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="pfam-domains" class="section level2">
 <h2>PFAM domains</h2>
 <pre class="r"><code>brn.pfam = pfamDomains(maf = brn, AACol = &#39;HGVSp&#39;, top = 10)</code></pre>
 <pre><code>Warning in pfamDomains(maf = brn, AACol = &quot;HGVSp&quot;, top = 10): NAs
 introduced by coercion</code></pre>
-<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-11-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-11-1.png" target="_blank">3d8fb5f</a>
-</td>
-<td style="text-align:left;">
-melsiddieg
-</td>
-<td style="text-align:left;">
-2018-09-28
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+<p><img src="figure/GBM_Analysis.Rmd/pfam-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="singnature-analysis" class="section level2">
 <h2>Singnature analysis</h2>
@@ -1274,119 +1034,26 @@ brn.sign = extractSignatures(mat = brn.tnm, nTry = 6, plotBestFitRes = FALSE)</c
 4:   70307.19 0.9956775       0.6838958        0.5295753  929.4269   490
 5:   62601.48 0.9961513       0.4684342        0.4485394  829.4023  1180
      cpu cpu.all nrun cophenetic dispersion silhouette.consensus
-1: 0.136   2.508   10  0.9997104  0.9760285            0.9927203
-2: 0.156   2.512   10  0.9987707  0.9589061            0.9500000
-3: 0.184   2.336   10  0.9951558  0.9406421            0.8942529
-4: 0.160   3.224   10  0.9375319  0.6689655            0.6622095
-5: 0.440   2.520   10  0.9497675  0.6773365            0.6510011</code></pre>
-<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-13-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-13-1.png" target="_blank">3d8fb5f</a>
-</td>
-<td style="text-align:left;">
-melsiddieg
-</td>
-<td style="text-align:left;">
-2018-09-28
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+1: 0.204  35.260   10  0.9997104  0.9760285            0.9927203
+2: 0.160  35.200   10  0.9987707  0.9589061            0.9500000
+3: 0.168  35.396   10  0.9951558  0.9406421            0.8942529
+4: 0.188  29.864   10  0.9375319  0.6689655            0.6622095
+5: 0.440  37.368   10  0.9497675  0.6773365            0.6510011</code></pre>
+<p><img src="figure/GBM_Analysis.Rmd/signature_analysis-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="visualizing-signatures" class="section level2">
 <h2>Visualizing Signatures</h2>
 <pre class="r"><code>plotSignatures(brn.sign, title_size = 0.8)</code></pre>
-<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-14-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/melsiddieg/GBM_Results/blob/3d8fb5fcfb3af96ab46cb957bd5b3f5108d61d14/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-14-1.png" target="_blank">3d8fb5f</a>
-</td>
-<td style="text-align:left;">
-melsiddieg
-</td>
-<td style="text-align:left;">
-2018-09-28
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+<p><img src="figure/GBM_Analysis.Rmd/plot_signature-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="clinical-enrichment" class="section level2">
 <h2>Clinical Enrichment</h2>
-<pre class="r"><code>brn.ce = clinicalEnrichment(maf = brn, clinicalFeature = &#39;Grade&#39;)</code></pre>
+<pre class="r"><code>brn.ce = clinicalEnrichment(maf = brn, clinicalFeature = &#39;Classification&#39;)</code></pre>
 <pre><code>
-  I  II III  IV 
-  2   3   5  16 </code></pre>
-<pre class="r"><code>plotEnrichmentResults(enrich_res = brn.ce, pVal = 0.05)</code></pre>
-<p><img src="figure/GBM_Analysis.Rmd/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<summary><em>Expand here to see past versions of unnamed-chunk-16-1.png:</em></summary>
-<table style = "border-collapse:separate; border-spacing:5px;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Version
-</th>
-<th style="text-align:left;">
-Author
-</th>
-<th style="text-align:left;">
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<a href="https://github.com/melsiddieg/GBM_Results/blob/257e6ab86601223121261920503c7ea375c8f2f1/docs/figure/GBM_Analysis.Rmd/unnamed-chunk-16-1.png" target="_blank">257e6ab</a>
-</td>
-<td style="text-align:left;">
-melsiddieg
-</td>
-<td style="text-align:left;">
-2018-10-14
-</td>
-</tr>
-</tbody>
-</table>
-</details>
+High_Grade  Low_Grade 
+        22          5 </code></pre>
+<pre class="r"><code>plotEnrichmentResults(enrich_res = brn.ce, pVal = 0.1)</code></pre>
+<p><img src="figure/GBM_Analysis.Rmd/clinical_enrich-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="session-information" class="section level2">
 <h2>Session information</h2>
@@ -1412,63 +1079,65 @@ attached base packages:
 [8] base     
 
 other attached packages:
- [1] doParallel_1.0.13   iterators_1.0.10    foreach_1.5.0      
- [4] NMF_0.21.0          cluster_2.0.7-1     rngtools_1.3.1     
- [7] pkgmaker_0.27       registry_0.5        data.table_1.11.8  
-[10] maftools_1.6.07     Biobase_2.40.0      BiocGenerics_0.26.0
+ [1] doParallel_1.0.13    iterators_1.0.10     foreach_1.5.0       
+ [4] NMF_0.21.0           cluster_2.0.7-1      rngtools_1.3.1      
+ [7] pkgmaker_0.27        registry_0.5         data.table_1.11.8   
+[10] maftools_1.6.07      Biobase_2.40.0       BiocGenerics_0.26.0 
+[13] RevoUtils_11.0.0     RevoUtilsMath_11.0.0
 
 loaded via a namespace (and not attached):
-  [1] bitops_1.0-6                matrixStats_0.54.0         
-  [3] bit64_0.9-7                 httr_1.3.1                 
-  [5] progress_1.2.0              RColorBrewer_1.1-2         
-  [7] rprojroot_1.3-2             GenomeInfoDb_1.16.0        
-  [9] tools_3.5.0                 backports_1.1.2            
- [11] R6_2.2.2                    DBI_1.0.0                  
- [13] lazyeval_0.2.1              colorspace_1.3-2           
- [15] GetoptLong_0.1.7            withr_2.1.2                
- [17] gridExtra_2.3               prettyunits_1.0.2          
- [19] tidyselect_0.2.4            bit_1.1-14                 
- [21] compiler_3.5.0              git2r_0.21.0               
- [23] DelayedArray_0.6.6          labeling_0.3               
- [25] slam_0.1-43                 rtracklayer_1.40.6         
- [27] scales_1.0.0                stringr_1.3.1              
- [29] digest_0.6.17               Rsamtools_1.32.3           
- [31] rmarkdown_1.9               R.utils_2.6.0              
- [33] cometExactTest_0.1.5        XVector_0.20.0             
- [35] pkgconfig_2.0.2             htmltools_0.3.6            
- [37] changepoint_2.2.2           bibtex_0.4.2               
- [39] BSgenome_1.48.0             rlang_0.2.2                
- [41] GlobalOptions_0.1.0         RSQLite_2.1.1              
- [43] shape_1.4.4                 bindr_0.1.1                
- [45] zoo_1.8-2                   mclust_5.4                 
- [47] BiocParallel_1.14.2         dplyr_0.7.6                
- [49] R.oo_1.22.0                 VariantAnnotation_1.26.1   
- [51] RCurl_1.95-4.11             magrittr_1.5               
- [53] GenomeInfoDbData_1.1.0      wordcloud_2.5              
- [55] Matrix_1.2-14               Rcpp_0.12.18               
- [57] munsell_0.5.0               S4Vectors_0.18.3           
- [59] R.methodsS3_1.7.1           stringi_1.2.4              
- [61] whisker_0.3-2               yaml_2.1.19                
- [63] SummarizedExperiment_1.10.1 zlibbioc_1.26.0            
- [65] plyr_1.8.4                  grid_3.5.0                 
- [67] blob_1.1.1                  ggrepel_0.8.0              
- [69] crayon_1.3.4                lattice_0.20-35            
- [71] cowplot_0.9.3               Biostrings_2.48.0          
- [73] splines_3.5.0               GenomicFeatures_1.32.2     
- [75] hms_0.4.2                   circlize_0.4.4             
- [77] knitr_1.20                  ComplexHeatmap_1.18.0      
- [79] pillar_1.3.0                GenomicRanges_1.32.6       
- [81] rjson_0.2.20                biomaRt_2.36.1             
- [83] reshape2_1.4.3              codetools_0.2-15           
- [85] stats4_3.5.0                XML_3.98-1.16              
- [87] glue_1.3.0                  evaluate_0.10.1            
- [89] gtable_0.2.0                purrr_0.2.5                
- [91] assertthat_0.2.0            ggplot2_3.0.0              
- [93] gridBase_0.4-7              xtable_1.8-3               
- [95] survival_2.41-3             tibble_1.4.2               
- [97] GenomicAlignments_1.16.0    AnnotationDbi_1.42.1       
- [99] memoise_1.1.0               IRanges_2.14.11            
-[101] workflowr_1.0.1             bindrcpp_0.2.2             </code></pre>
+  [1] colorspace_1.3-2            rjson_0.2.20               
+  [3] mclust_5.4                  rprojroot_1.3-2            
+  [5] circlize_0.4.4              XVector_0.20.0             
+  [7] GenomicRanges_1.32.6        GlobalOptions_0.1.0        
+  [9] ggrepel_0.8.0               bit64_0.9-7                
+ [11] AnnotationDbi_1.42.1        codetools_0.2-15           
+ [13] splines_3.5.0               R.methodsS3_1.7.1          
+ [15] knitr_1.20                  jsonlite_1.5               
+ [17] workflowr_1.0.1             Rsamtools_1.32.3           
+ [19] gridBase_0.4-7              R.oo_1.22.0                
+ [21] compiler_3.5.0              httr_1.3.1                 
+ [23] backports_1.1.2             assertthat_0.2.0           
+ [25] Matrix_1.2-14               lazyeval_0.2.1             
+ [27] htmltools_0.3.6             prettyunits_1.0.2          
+ [29] tools_3.5.0                 bindrcpp_0.2.2             
+ [31] gtable_0.2.0                glue_1.3.0                 
+ [33] GenomeInfoDbData_1.1.0      reshape2_1.4.3             
+ [35] dplyr_0.7.7                 Rcpp_0.12.19               
+ [37] slam_0.1-43                 Biostrings_2.48.0          
+ [39] rtracklayer_1.40.6          changepoint_2.2.2          
+ [41] stringr_1.3.1               XML_3.98-1.16              
+ [43] zlibbioc_1.26.0             zoo_1.8-2                  
+ [45] scales_1.0.0                BSgenome_1.48.0            
+ [47] VariantAnnotation_1.26.1    hms_0.4.2                  
+ [49] SummarizedExperiment_1.10.1 RColorBrewer_1.1-2         
+ [51] ComplexHeatmap_1.18.0       yaml_2.1.19                
+ [53] memoise_1.1.0               reticulate_1.8             
+ [55] gridExtra_2.3               ggplot2_3.0.0              
+ [57] biomaRt_2.36.1              stringi_1.2.4              
+ [59] RSQLite_2.1.1               S4Vectors_0.18.3           
+ [61] GenomicFeatures_1.32.2      BiocParallel_1.14.2        
+ [63] bibtex_0.4.2                shape_1.4.4                
+ [65] GenomeInfoDb_1.16.0         rlang_0.2.2                
+ [67] pkgconfig_2.0.2             matrixStats_0.54.0         
+ [69] bitops_1.0-6                evaluate_0.10.1            
+ [71] lattice_0.20-35             purrr_0.2.5                
+ [73] bindr_0.1.1                 labeling_0.3               
+ [75] GenomicAlignments_1.16.0    cowplot_0.9.3              
+ [77] bit_1.1-14                  tidyselect_0.2.4           
+ [79] plyr_1.8.4                  magrittr_1.5               
+ [81] R6_2.3.0                    IRanges_2.14.11            
+ [83] DelayedArray_0.6.6          DBI_1.0.0                  
+ [85] pillar_1.3.0                whisker_0.3-2              
+ [87] withr_2.1.2                 survival_2.41-3            
+ [89] RCurl_1.95-4.11             tibble_1.4.2               
+ [91] crayon_1.3.4                cometExactTest_0.1.5       
+ [93] wordcloud_2.5               rmarkdown_1.9              
+ [95] GetoptLong_0.1.7            progress_1.2.0             
+ [97] grid_3.5.0                  blob_1.1.1                 
+ [99] git2r_0.21.0                digest_0.6.18              
+[101] xtable_1.8-3                R.utils_2.6.0              
+[103] stats4_3.5.0                munsell_0.5.0              </code></pre>
 </div>
 
 <!-- Adjust MathJax settings so that all math formulae are shown using

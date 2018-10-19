@@ -7,13 +7,13 @@ output:
   pdf_document: default
 ---
 
-```{r setup, include=FALSE}
+```{r , include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 ```
 
 
 ## Read in the Data
-```{r, message=FALSE}
+```{r setup, message=FALSE}
 library(maftools)
 library(data.table)
 maf <- fread('/home/sieny/Gemini_Data/Brain/mskcc-vcf2maf-decbf60/Annoted_Mutect_brain6_final.maf')
@@ -21,69 +21,79 @@ clin <- fread('/home/sieny/Gemini_Data/Brain/cData.csv')
 brn <- read.maf(maf,clin)
 ```
 ## Explore
-```{r}
+```{r explore}
 getSampleSummary(brn)
 getGeneSummary(brn)
 getFields(brn)
 ```
 ## Maf summary
 
-```{r}
-plotmafSummary(maf = brn, rmOutlier = TRUE, addStat = 'median', dashboard = TRUE, 
-               titvRaw = FALSE)
+```{r mafsummary}
+plotmafSummary(maf = brn, rmOutlier = TRUE, addStat = 'median', dashboard = TRUE, titvRaw = FALSE)
 ```
 
 ## Oncoplot
 
-```{r}
-oncoplot(maf = brn, top = 20)
+```{r oncoplot}
+oncoplot(maf = brn, top = 20,clinicalFeatures = 'Classification',
+         sortByAnnotation = TRUE)
 ```
+<!-- Query Genes -->
+```{r new_oncoplot}
+genes <- c('TP53','ATRX','PGBM','NF2','BRAF','mTOR','TTN','IDH1','FRMPD4',
+           'PKHD1L1','SPATA')
+oncoplot(maf = brn, genes =genes)
+
+
+```
+
+
 
 ## TiTv summary
 
-```{r}
+```{r titv}
 brn.titv = titv(maf = brn, plot = FALSE, useSyn = TRUE)
 plotTiTv(res = brn.titv)
 ```
 ## Lolipop plots
-```{r}
+```{r lolipop}
 lollipopPlot(maf = brn, gene = 'IGFN1', AACol = 'HGVSp', showMutationRate = TRUE)
 ```
  
-```{r}
+```{r lolipop2}
 lollipopPlot(maf = brn, gene = 'MEGF6', AACol = 'HGVSp', showMutationRate = TRUE)
 ```
 
 ##  Rainfall plot
 
-```{r}
+```{r rainfall}
 rainfallPlot(maf = brn, detectChangePoints = TRUE, fontSize = 12, pointSize = 0.6)
 ```
 
 ##  Somatic Interaction
 
-```{r}
+```{r somatic_interactions}
 somaticInteractions(maf = brn, top = 25, pvalue = c(0.05, 0.1))
 
 ```
 ## Oncodrive
 
-```{r ,FALSE, message=FALSE, warning=FALSE,results='hide', cache=TRUE}
+```{r oncodrive ,FALSE, message=FALSE, warning=FALSE,results='hide', cache=TRUE}
 brn.drivers = oncodrive(maf = brn, AACol = 'HGVSp', minMut = 5, pvalMethod = 'zscore')
 ```
  
-```{r}
+```{r oncodrive_onco}
 
 plotOncodrive(res = brn.drivers, fdrCutOff = 0.1, useFraction = TRUE)
 ```
 
 ## PFAM domains
 
-```{r}
+```{r pfam}
 brn.pfam = pfamDomains(maf = brn, AACol = 'HGVSp', top = 10)
 ```
 
-```{r ,include=FALSE}
+```{r tnm,include=FALSE}
 brn.tnm = trinucleotideMatrix(maf = brn, 
                               ref_genome = '/home/sieny/snpEff/Human_Ref/hg19.fa', 
                               prefix="chr",add = TRUE, ignoreChr = 'chr23', useSyn = TRUE)
@@ -92,26 +102,26 @@ brn.tnm = trinucleotideMatrix(maf = brn,
 
 ## Singnature analysis
 
-```{r}
+```{r signature_analysis}
 require('NMF')
 brn.sign = extractSignatures(mat = brn.tnm, nTry = 6, plotBestFitRes = FALSE)
 ```
 
 ## Visualizing Signatures
 
-```{r}
+```{r plot_signature}
 plotSignatures(brn.sign, title_size = 0.8)
 ```
 
-```{r, include=FALSE,eval=FALSE}
+```{r signature_enrich, include=FALSE,eval=FALSE}
 brn.se = signatureEnrichment(maf = brn, sig_res = brn.sign,minMut = 20)
 
 ```
 
 ## Clinical Enrichment
-```{r}
-brn.ce = clinicalEnrichment(maf = brn, clinicalFeature = 'Grade')
-plotEnrichmentResults(enrich_res = brn.ce, pVal = 0.05)
+```{r clinical_enrich}
+brn.ce = clinicalEnrichment(maf = brn, clinicalFeature = 'Classification')
+plotEnrichmentResults(enrich_res = brn.ce, pVal = 0.1)
 
 
 ```
