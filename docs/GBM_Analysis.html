@@ -346,7 +346,7 @@ div.section {
 </li>
 <li>
 <details>
-<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/melsiddieg/GBM_Results/tree/df28a6754f6d804e896b6671a7ce4f2868147fe4" target="_blank">df28a67</a> </summary></p>
+<p><summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/melsiddieg/GBM_Results/tree/3fa27c8077fdc20f9ac0a478b38059d23f292cc7" target="_blank">3fa27c8</a> </summary></p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 <pre><code>
 Ignored files:
@@ -383,6 +383,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/melsiddieg/GBM_Results/blob/3fa27c8077fdc20f9ac0a478b38059d23f292cc7/analysis/GBM_Analysis.Rmd" target="_blank">3fa27c8</a>
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-10-19
+</td>
+<td style="text-align:left;">
+fixed annotation color
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+html
+</td>
+<td style="text-align:left;">
+<a href="https://cdn.rawgit.com/melsiddieg/GBM_Results/35da55dcaf0eb3a767f653d7c8d9ebee7224eb75/docs/GBM_Analysis.html" target="_blank">35da55d</a>
+</td>
+<td style="text-align:left;">
+melsiddieg
+</td>
+<td style="text-align:left;">
+2018-10-19
+</td>
+<td style="text-align:left;">
+fixed Rmd file
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 html
@@ -945,7 +979,7 @@ melsiddieg
 <div id="oncoplot" class="section level2">
 <h2>Oncoplot</h2>
 <pre class="r"><code>oncoplot(maf = brn, top = 20,clinicalFeatures = &#39;Classification&#39;,
-         sortByAnnotation = TRUE)</code></pre>
+         sortByAnnotation = TRUE,annotationColor = list(Classification=c(Low_Grade=c(&quot;#FFE4C4&quot;),High_Grade=c(&quot;#8B4513&quot;))))</code></pre>
 <p><img src="figure/GBM_Analysis.Rmd/oncoplot-1.png" width="672" style="display: block; margin: auto;" /></p>
 <details>
 <summary><em>Expand here to see past versions of oncoplot-1.png:</em></summary>
@@ -1428,11 +1462,11 @@ brn.sign = extractSignatures(mat = brn.tnm, nTry = 6, plotBestFitRes = FALSE)</c
 4:   70307.19 0.9956775       0.6838958        0.5295753  929.4269   490
 5:   62601.48 0.9961513       0.4684342        0.4485394  829.4023  1180
      cpu cpu.all nrun cophenetic dispersion silhouette.consensus
-1: 0.148   2.316   10  0.9997104  0.9760285            0.9927203
-2: 0.232   2.536   10  0.9987707  0.9589061            0.9500000
-3: 0.184   3.272   10  0.9951558  0.9406421            0.8942529
-4: 0.224   2.532   10  0.9375319  0.6689655            0.6622095
-5: 0.340   2.568   10  0.9497675  0.6773365            0.6510011</code></pre>
+1: 0.108   2.292   10  0.9997104  0.9760285            0.9927203
+2: 0.132   2.252   10  0.9987707  0.9589061            0.9500000
+3: 0.136   3.172   10  0.9951558  0.9406421            0.8942529
+4: 0.172   2.344   10  0.9375319  0.6689655            0.6622095
+5: 0.436   2.360   10  0.9497675  0.6773365            0.6510011</code></pre>
 <p><img src="figure/GBM_Analysis.Rmd/signature_analysis-1.png" width="672" style="display: block; margin: auto;" /></p>
 <details>
 <summary><em>Expand here to see past versions of signature_analysis-1.png:</em></summary>
